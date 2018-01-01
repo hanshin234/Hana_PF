@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>사거리</title>
+        <!-- Bootstrap -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/resources/image/icon/HalfLife.ico" rel="shortcuticon">
+        <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
+        <script src="/resources/bootstrap/js/respond.js"></script>
+    </head>
+    <body>
+        <div class="container"><!-- 좌우측의 공간 확보 -->
+            <!-- 헤더 들어가는 부분 -->
+             
+            <div class="row">
+                <p></p>
+                <div class="col-md-6">
+                    <small>
+                    <a href="#">로그인</a> | <a href="/user/signUp">회원가입</a>
+                    </small></div>
+                <div class="col-md-6">
+                    <p class="text-right">
+                        <a href="http://www.naver.com" target="_blank"><img src="/resources/image/icon/naverIcon.png" alt="네이버 블로그" width="20" height="20" class="img-rounded"></a>
+                        <a href="http://www.facebook.com" target="_blank"><img src="/resources/image/icon/facebookIcon.png" alt="네이버 블로그" width="20" height="20" class="img-rounded"></a>
+                        <a href="http://www.twitter.com" target="_blank"><img src="/resources/image/icon/twitterIcon.png" alt="네이버 블로그" width="21" height="21" class="img-rounded"></a>
+                    </p>
+                </div>
+            </div>
+            <!--// 헤더 들어가는 부분 -->
+            <!-- 모달창 -->
+            <div class="modal fade" id="defaultModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">알림</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="modal-contents"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!--// 모달창 -->
+            <hr/>
+                <!-- 본문 들어가는 부분 -->
+                 
+        
+        <form class="form-horizontal col-md-8 col-md-offset-1" role="form" method="post" action="/owner/add_res_info">
+        <h2>매장 정보 입력</h2> 
+        <br><br><br>
+            <h3>필수 입력 정보</h3>
+            <hr>
+            <div class="form-group" id="divResName">
+                <label for="inputId" class="col-lg-2 control-label">업소명</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control " id="resName" name="resName" placeholder="업소명을 입력하세요" maxlength="30">
+                </div>
+            </div>
+            <div class="form-group" id="divAddress">
+                <label for="inputId" class="col-lg-2 control-label">주소</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control " id="address" name="address" placeholder="주소를 입력하세요" maxlength="50">
+                </div>
+            </div>
+
+              <div class="form-group" id="divTel">
+                <label for="inputTel" class="col-lg-2 control-label">전화 번호</label>
+                <div class="col-lg-10">
+                    <input type="tel" class="form-control onlyNumber" id="tel" name="tel" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+                </div>
+            </div>
+            <div class="form-group" id="divOpenTime">
+                <label for="inputOpenTime" class="col-lg-2 control-label">영업시간</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="openTime" name="openTime" data-rule-required="true" placeholder="영업시간을 입력하세요." maxlength="30">
+                </div>
+            </div>
+            <div class="form-group" id="divHolyDay">
+                <label for="inputName" class="col-lg-2 control-label">휴일</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="holyDay" name="holyDay" data-rule-required="true" placeholder="휴일 정보를 입력하세요" maxlength="30">
+                </div>
+            </div>             
+
+            <div class="form-group">
+                <label for="category" class="col-lg-2 control-label">업종</label>
+                <div class="col-lg-10">
+                    <select class="form-control" id="category" name="cateNum">
+                        <option value=1>한식</option>
+                        <option value=2>중식</option>
+                        <option value=3>양식</option>
+                        <option value=4>일식</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-primary">완료</button>
+                </div>
+            </div>
+        </form>
+         
+         
+        <script>
+         
+            $(function(){
+                //모달을 전역변수로 선언
+                var modalContents = $(".modal-contents");
+                var modal = $("#defaultModal");
+                 
+                $('.onlyAlphabetAndNumber').keyup(function(event){
+                    if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                        var inputVal = $(this).val();
+                        $(this).val($(this).val().replace(/[^_a-z0-9]/gi,'')); //_(underscore), 영어, 숫자만 가능
+                    }
+                });
+                 
+                $(".onlyHangul").keyup(function(event){
+                    if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                        var inputVal = $(this).val();
+                        $(this).val(inputVal.replace(/[a-z0-9]/gi,''));
+                    }
+                });
+             
+                $(".onlyNumber").keyup(function(event){
+                    if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                        var inputVal = $(this).val();
+                        $(this).val(inputVal.replace(/[^0-9]/gi,''));
+                    }
+                });
+                 
+                //------- 검사하여 상태를 class에 적용
+                $('#resName').keyup(function(event){
+                     
+                    var divResName = $('#divResName');
+                     
+                    if($('#resName').val()==""){
+                        divResName.removeClass("has-success");
+                        divResName.addClass("has-error");
+                    }else{
+                        divResName.removeClass("has-error");
+                        divResName.addClass("has-success");
+                    }
+                });
+                $('#address').keyup(function(event){
+                     
+                    var divAddress = $('#divAddress');
+                     
+                    if($('#address').val()==""){
+                        divAddress.removeClass("has-success");
+                        divAddress.addClass("has-error");
+                    }else{
+                        divAddress.removeClass("has-error");
+                        divAddress.addClass("has-success");
+                    }
+                });                 
+
+                 
+
+                 
+                $('#openTime').keyup(function(event){
+                     
+                    var divOpenTime = $('#divOpenTime');
+                     
+                    if($.trim($('#openTime').val())==""){
+                        divOpenTime.removeClass("has-success");
+                        divOpenTime.addClass("has-error");
+                    }else{
+                        divOpenTime.removeClass("has-error");
+                        divOpenTime.addClass("has-success");
+                    }
+                });
+                 
+
+                $('#holyDay').keyup(function(event){
+                     
+                    var divHolyDay = $('#divHolyDay');
+                     
+                    if($.trim($('#holyDay').val())==""){
+                        divHolyDay.removeClass("has-success");
+                        divHolyDay.addClass("has-error");
+                    }else{
+                        divHolyDay.removeClass("has-error");
+                        divHolyDay.addClass("has-success");
+                    }
+                });
+                 
+                $('#tel').keyup(function(event){
+                     
+                    var divTel = $('#divTel');
+                     
+                    if($.trim($('#tel').val())==""){
+                        divTel.removeClass("has-success");
+                        divTel.addClass("has-error");
+                    }else{
+                        divTel.removeClass("has-error");
+                        divTel.addClass("has-success");
+                    }
+                });
+                 
+                 
+                //------- validation 검사
+                
+                
+                
+                $( "form" ).submit(function( event ) {
+                     
+                    var memberInfo = $('#memberInfo');
+                    var divResName = $('#divResName');
+
+                    var divOpenTime = $('#divOpenTime');
+                    var divTel = $('#divTel');
+                    var divHolyDay = $('#divHolyDay');
+                    var divAddress = $('#divAddress');
+     
+                     
+
+                     
+                    //업소명 검사
+                    if($('#resName').val()==""){
+                        modalContents.text("업소명을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                         
+                        divResName.removeClass("has-success");
+                        divResName.addClass("has-error");
+                        $('#resName').focus();
+                        return false;
+                    }else{
+                        divResName.removeClass("has-error");
+                        divResName.addClass("has-success");
+                    }
+                    //주소 검사
+                    if($('#address').val()==""){
+                        modalContents.text("주소를 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                         
+                        divResName.removeClass("has-success");
+                        divResName.addClass("has-error");
+                        $('#address').focus();
+                        return false;
+                    }else{
+                        divResName.removeClass("has-error");
+                        divResName.addClass("has-success");
+                    }
+                                          
+                    //영업시간 검사
+                    if($('#openTime').val()==""){
+                        modalContents.text("영업시간을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                         
+                        divOpenTime.removeClass("has-success");
+                        divOpenTime.addClass("has-error");
+                        $('#openTime').focus();
+                        return false;
+                    }else{
+                        divOpenTime.removeClass("has-error");
+                        divOpenTime.addClass("has-success");
+                    }
+                     
+
+                    //영업시간
+                    if($('#openTime').val()==""){
+                        modalContents.text("영업시간을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                         
+                        divOpenTime.removeClass("has-success");
+                        divOpenTime.addClass("has-error");
+                        $('#openTime').focus();
+                        return false;
+                    }else{
+                        divOpenTime.removeClass("has-error");
+                        divOpenTime.addClass("has-success");
+                    }
+                     
+                    //휴일
+                    if($('#holyDay').val()==""){
+                        modalContents.text("휴일을 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                         
+                        divHolyDay.removeClass("has-success");
+                        divHolyDay.addClass("has-error");
+                        $('#holyDay').focus();
+                        return false;
+                    }else{
+                        divHolyDay.removeClass("has-error");
+                        divHolyDay.addClass("has-success");
+                    }
+                     
+                     
+
+                     
+                    //전화 번호
+                    if($('#tel').val()==""){
+                        modalContents.text("전화 번호를 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                         
+                        divTel.removeClass("has-success");
+                        divTel.addClass("has-error");
+                        $('#tel').focus();
+                        return false;
+                    }else{
+                        divTel.removeClass("has-error");
+                        divTel.addClass("has-success");
+                    }
+                     
+                 
+                });
+                 
+            });
+             
+        </script>
+                <!--// 본문 들어가는 부분 -->
+            <hr/>
+            <!-- 푸터 들어가는 부분 -->
+<!--
+             
+            <div class="col-md-6">
+                <p class="text-center">
+                    <small><strong> 사거리</strong></small><br>
+                    <small>대표 : 홍길동 ㆍ 주소 :  사거리 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 : 064-123-1234</small><br>
+                    <small>Copyrightⓒ test.com All rights reserved.</small>
+                </p>
+            </div>
+-->
+            <!--// 푸터 들어가는 부분 -->
+        </div>
+    </body>
+</html>

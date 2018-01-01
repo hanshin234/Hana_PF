@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<!--
+   Radius by TEMPLATED
+   templated.co @templatedco
+   Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>Radius by TEMPLATED</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" href="../css/restaurant_main.css" />-->
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+</head>
+
+
+
+<body>
+    <div class="container">
+        <table class="write-post">
+            <thead>
+                <caption>사진 추가</caption>
+            </thead>
+            <tbody>
+                <form method="post" action="/sending/addPic_ob" enctype="multipart/form-data">
+
+                   
+                    <tr>
+                        
+                        <td><input type="file" placeholder="파일을 선택하세요. " name="photo" class="form-control" /></td>
+                        <th><input type="hidden" name="post_num" value="<%=post_num%>"></th>
+  
+                       
+                        <th></th>
+                        
+                        <td colspan="2">
+                            <input type="submit" value="등록" class="pull-right" />
+
+
+
+                        </td>
+                    </tr>
+                </form>
+            </tbody>
+
+
+        </table>
+    </div>
+
+</body>
+
+</html>

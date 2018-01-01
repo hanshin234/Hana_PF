@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <style>
+        .ob-form {
+            margin-top : 10px;
+        }
+
+        .pic {
+            width: 300px;
+            height: 300px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .pic:hover {
+            transform: scale(1.1);
+        }
+
+
+        .text-title{
+            color:black;
+            text-align:left;
+            font-size: 25px;
+        }
+        .box-model-left-right {
+            border-style: solid;
+            border-width: 2px;
+            padding: 30px;
+            border-color: lightgrey;
+            border-top: 0px;
+            border-bottom: 0px;
+        }
+        .box-model-only-bottom {
+            border-style: solid;
+
+            padding: 30px;
+            border-color: lightgrey;
+            border-width: 1px;
+            border-top: 0px;
+            border-left: 0px;
+            border-right: 0px;
+            margin-bottom: 10px;
+        }        
+    </style>
+    <title>show ob_list</title>
+
+
+
+</head>
+
+<body>
+
+    <div class='container'>
+
+        <hr/>
+        <div>
+                <h1 >
+                    개인 리뷰 리스트.
+                </h1>
+        <hr/>
+ 
+            
+            <%  console.log('showlist ejs join !!');%>
+                <%  for(var i =0 ; i<rows.length; i++) { %>
+                    <%
+                        console.dir(rows);
+                        var curPostNum = rows[i].post_num;
+                        var curImage = '../uploads/'+rows[i].pic_filename; 
+                        var curTitle = rows[i].title;
+                        function cutString(str) {
+                            if( str.length >7) {
+                                return str.substring(0,7)+' ···';
+                            } else return str;
+                        }
+                    %>
+                        <div class='col-md-4 ob-form box-model-only-bottom' onclick="location.href='/loading/read_review?tmp_post_num='+<%=curPostNum%>">
+                            <div>
+                                <img src='/uploads/<%=curImage%>' class="pic">
+                            </div>
+                            
+                            <h3 class="text-title"><%= cutString(curTitle) %></h3>
+
+
+
+                        </div>
+                        <% }%>
+        </div>
+        
+    </div>
+</body>
+
+</html>

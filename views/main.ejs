@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        <style>.ob-form {
+            margin-top: 10px;
+        }
+
+        .background-gray {
+            background-color: lightgray;
+        }
+
+        .background-white {
+            background-color: white;
+        }
+
+        .pic {
+            width: 300px;
+            height: 300px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .pic:hover {
+            transform: scale(1.1);
+        }
+
+
+        .text-title {
+            color: black;
+            text-align: left;
+            font-size: 25px;
+        }
+
+        .box-model-left-right {
+            border-style: solid;
+            border-width: 2px;
+            padding: 30px;
+            border-color: lightgrey;
+            border-top: 0px;
+            border-bottom: 0px;
+        }
+
+        .box-model-only-bottom {
+            border-style: solid;
+
+            padding: 30px;
+            border-color: lightgrey;
+            border-width: 1px;
+            border-top: 0px;
+            border-left: 0px;
+            border-right: 0px;
+            margin-bottom: 10px;
+        }
+
+        .custom-font {
+            font-size: 20px;
+            color: darkgray;
+
+        }
+
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script>
+        $(function() {
+            $.ajax({
+                url: '/api/ajax/ubList', // JSON 형태로 결과를 반환하는 요청 URL 주소를 기재
+                type: 'get',
+                dataType: 'json',
+                success: function(res) {
+                    //                    var length = res.rows.length;
+                    var length = 6;
+                    for (var i = 0; i < length; i++) {
+
+                        var curPostNum = res.rows[i].post_num;
+                        var curImage = '../uploads/' + res.rows[i].pic_filename;
+                        var curTitle = res.rows[i].title;
+
+
+                        function cutString(str) {
+                            if (str.length > 7) {
+                                return str.substring(0, 7) + ' ···';
+                            } else return str;
+                        }
+
+
+                        var my_template = $("#myTemplate").html();
+                        var template = my_template.format(curPostNum, curTitle, curImage);
+                        $("#container").append(template);
+
+
+                    }
+
+                } 
+            });
+
+            $.ajax({
+                url: '/api/ajax/obList', // JSON 형태로 결과를 반환하는 요청 URL 주소를 기재
+                type: 'get',
+                dataType: 'json',
+                success: function(res) { 
+                    var length = res.rows.length;
+
+                    for (var i = 0; i < length; i++) {
+
+                        var curPostNum = res.rows[i].post_num;
+                        var curImage = '../uploads/' + res.rows[i].pic_filename;
+                        var curTitle = res.rows[i].title;
+                        var curLikecount = res.rows[i].like_count;
+                        var curAddress = res.rows[i].r_address;
+ 
+                        function cutString(str) {
+                            if (str.length > 7) {
+                                return str.substring(0, 7) + ' ···';
+                            } else return str;
+                        }
+                        var my_template = $("#myTemplate2").html();
+                        var template = my_template.format(curPostNum, curImage, curTitle, curLikecount, curAddress);
+                        $("#container2").append(template);
+                    }
+
+                } 
+            });
+
+        });
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <% var isUserFlag = isUser %>
+
+        <% if( isUserFlag == -1){ %>
+            <%         include ./header.ejs %>
+                <%    }else{                    %>
+                    <%         include ./header_after_login.ejs %>
+                        <%    } %>
+
+                            <%// include ./header.ejs %>
+                                <% //include ./header_after_login.ejs %>
+
+
+                                    <script>
+                                        //스크립트를 이용한 html 템플릿을 사용 하기 위한 함수
+                                        String.prototype.format = function() {
+                                            var args = arguments;
+                                            return this.replace(/{(\d+)}/g, function(match, number) {
+                                                return typeof args[number] != 'undefined' ? args[number] : match;
+                                            });
+                                        };
+
+                                    </script>
+                                    <div class="container">
+                                        <div>
+                                            <hr/>
+                                            <div>
+                                                <h1>
+                                                    개인 리뷰 리스트.
+                                                </h1>
+                                                <hr/>
+
+                                            </div>
+                                                <div id='container'>
+
+
+                                                <script type="text/template" id="myTemplate">
+                                                    <div class='col-md-4 ob-form box-model-only-bottom' onclick="location.href='/loading/read_review?tmp_post_num='+{0}">
+                                                        <div>
+                                                            <img src='/uploads/{2}' class="pic">
+                                                        </div>
+
+                                                        <h3 class="text-title">
+                                                            {1}
+                                                        </h3>
+
+                                                </script>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="container">
+                                            <div class="box-model-only-bottom">
+                                                <h1>
+                                                    업체 홍보 리스트.
+                                                </h1>
+                                            </div>
+                                            <div id='container2'>
+
+                                            <script type="text/template" id="myTemplate2">
+                                                <div class='col-md-4 ob-form box-model-only-bottom' onclick="location.href='/loading/read_restaurant?tmp_post_num='+{0}">
+                                                    <div>
+                                                        <img src='/uploads/{1}' class="pic">
+                                                    </div>
+
+                                                    <div>
+
+                                                        <div>
+                                                            <h2>
+                                                                제목 : {2}
+                                                                <h2>
+                                                        </div>
+                                                        <div>
+                                                            <p class='custom-font'>
+                                                                좋아요 : {3}
+                                                            </p>
+                                                        </div>
+                                                        <div>
+                                                            <p class='custom-font'>
+                                                                위치 : {4}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </script>
+                                            </div>
+                                        </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
